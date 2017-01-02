@@ -499,10 +499,14 @@ namespace iTextSharp.text.pdf.parser {
                     if (entryObj is PdfString){
                         processor.DisplayPdfString((PdfString)entryObj);
                         tj = 0;
-                    } else {
+                    } else
+                    if (entryObj is PdfNumber)
+                    {
                         tj = ((PdfNumber)entryObj).FloatValue;
                         processor.ApplyTextAdjust(tj);
                     }
+                    else
+                    { } //ignore element not according specification
                 }
 
             }
